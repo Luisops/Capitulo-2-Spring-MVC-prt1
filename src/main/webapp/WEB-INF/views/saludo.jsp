@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h1>${mensaje}</h1>
+	<br/><br/>
+	<a href="loginMostrar.do">Ingresar al login</a>
 </body>
 </html>

@@ -18,9 +18,13 @@ public class SaludoController {
 	 */
 	//CON MODEL AND VIEW
 	/*
-	 * @RequestMapping("saludo") public ModelAndView saludar() { ModelAndView mv =
-	 * new ModelAndView(); mv.addObject("mensaje",
-	 * "Bienvenido desde el controlador MV"); mv.setViewName("saludo"); return mv; }
+	 * @RequestMapping("saludo") 
+	 * public ModelAndView saludar() {
+	 *  ModelAndView mv = new ModelAndView();
+	 *  mv.addObject("mensaje", "Bienvenido desde el controlador MV"); 
+	 *  mv.setViewName("saludo"); 
+	 *  return mv; 
+	 *  }
 	 */ 
 	
 	//CON MODEL AND VIEW CON MENOS LINEAS
