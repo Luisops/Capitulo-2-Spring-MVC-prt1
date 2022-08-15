@@ -8,12 +8,13 @@ import org.hibernate.validator.constraints.NotBlank;
 public class UsuarioDTO {
 
 	@Size(min=3, max = 20)
-	String usuario;
+	private String usuario;
 	
 	@NotNull
 	@NotBlank
-	String clave;
-	String nombreCompleto;
+	private String clave;
+	private String nombreCompleto;
+	private byte[] foto;
 	
 	public UsuarioDTO() {
 		// TODO Auto-generated constructor stub
@@ -41,4 +42,11 @@ public class UsuarioDTO {
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
 	}
+	public byte[] getFoto() {
+		return foto;
+	}
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+	
 }
