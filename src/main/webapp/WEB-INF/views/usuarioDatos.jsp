@@ -33,9 +33,14 @@
 				<td><mvc:errors path="nombreCompleto" /></td>
 			</tr>
 			<tr>
-				<td colspan="1"><input type="submit" value="Insertar" /></td>
+				<td colspan="1">
+					<input type="submit" value="${accion}" />
+					&nbsp;   &nbsp; &nbsp;  
+					<a href="usuarioCancelar.do" class="btn btn-primary">Cancelar</a>
+				</td>
 			</tr>
 		</table>
+			<input type="hidden" name="accion" value="${accion}" />
 	</mvc:form>
 </body>
 </html>

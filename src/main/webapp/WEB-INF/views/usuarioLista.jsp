@@ -27,6 +27,8 @@
 				<td><%=usuario.getUsuario()%></td>
 				<td><%=usuario.getClave()%></td>
 				<td><%=usuario.getNombreCompleto()%></td>
+				<td><a href="usuarioModificar.do?codigoUsuario=<%= usuario.getUsuario()%>" >Editar</a></td>
+				<td><a href="usuarioEliminar.do?codigoUsuario=<%= usuario.getUsuario()%>" >Eliminar</a></td>
 			</tr>
 			<%
 			}

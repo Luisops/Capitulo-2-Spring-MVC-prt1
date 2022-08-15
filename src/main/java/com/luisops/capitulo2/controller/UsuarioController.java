@@ -5,9 +5,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.luisops.capitulo2.model.UsuarioDTO;
@@ -55,22 +57,43 @@ public class UsuarioController {
 	
 	@RequestMapping("usuarioCrear")
 	public ModelAndView crearUsuario() {
-		return new ModelAndView("usuarioDatos","usuarioBean", new UsuarioDTO());
+		ModelAndView mv = new ModelAndView("usuarioDatos","usuarioBean", new UsuarioDTO());
+		mv.addObject("accion", "Insertar");
+		return mv;
 	}
 	
 	@RequestMapping("usuarioGrabar")
 	public ModelAndView grabarUsuario(@Valid @ModelAttribute("usuarioBean") UsuarioDTO usuario, 
-			BindingResult resulta){
+			BindingResult resulta, @RequestParam("accion") String accion){
 		ModelAndView mv= null;
 		if(resulta.hasErrors()) {
 			mv= new ModelAndView("usuarioDatos","usuarioBean",usuario);
 		}
 		else {
-			usuarioServicio.insertarUsuario(usuario);
 			mv = new ModelAndView("usuarioLista", "lista",usuarioServicio.getListaUsuarios());
+			if(accion.equalsIgnoreCase("Insertar")) {
+				usuarioServicio.insertarUsuario(usuario);
+			}else {
+				usuarioServicio.modificarUsuario(usuario);
+			}
+		
 		}
 		
 		return mv;
 	}	
+	
+	@RequestMapping("usuarioEliminar")
+	public ModelAndView usuarioEliminar(@RequestParam("codigoUsuario") String codigoUsuario) {
+		usuarioServicio.eliminarUsuario(codigoUsuario);
+		return new ModelAndView("usuarioLista","lista",usuarioServicio.getListaUsuarios());
+	}
+	
+	@RequestMapping("usuarioModificar")
+	public ModelAndView usuarioModificar(@RequestParam("codigoUsuario") String codigoUsuario) {
+		UsuarioDTO usuario = usuarioServicio.getUsuario(codigoUsuario);
+		ModelAndView mv = new ModelAndView("usuarioDatos","usuarioBean", usuario);
+			mv.addObject("accion", "Modificar");
+		return mv;
+	}
 	
 }

@@ -26,4 +26,16 @@ public class UsuarioService {
 	public void insertarUsuario(UsuarioDTO usuario) {
 		usuarioDAO.insertarUsuario(usuario);
 	}
+	
+	public void eliminarUsuario(String codigo) {
+		usuarioDAO.eliminarUsuario(codigo);
+	}
+	
+	public UsuarioDTO getUsuario(String codigo) {
+		return usuarioDAO.getUsuario(codigo);
+	}
+	
+	public void modificarUsuario(UsuarioDTO usuario) {
+		usuarioDAO.modificarUsuario(usuario);
+	}
 }
