@@ -17,6 +17,7 @@
 				<th>Usuario</th>
 				<th>Clave</th>
 				<th>Nombre completo</th>
+				<th>Foto</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,6 +28,7 @@
 				<td><%=usuario.getUsuario()%></td>
 				<td><%=usuario.getClave()%></td>
 				<td><%=usuario.getNombreCompleto()%></td>
+				<td><a href="fotoMostrar.do?codigoUsuario=<%= usuario.getUsuario()%>" >Foto</a></td>
 				<td><a href="usuarioModificar.do?codigoUsuario=<%= usuario.getUsuario()%>" >Editar</a></td>
 				<td><a href="usuarioEliminar.do?codigoUsuario=<%= usuario.getUsuario()%>" >Eliminar</a></td>
 			</tr>
@@ -36,5 +38,7 @@
 		</tbody>
 	</table>
 	<a href="usuarioCrear.do">Crear Usuario</a>
+	<br/>
+	<h3>Se han creado en esta sesion ${sessionScope.contador} usuarios!</h3>
 </body>
 </html>
