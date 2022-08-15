@@ -1,9 +1,12 @@
 package com.luisops.capitulo2.controller;
 
-import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,9 +48,29 @@ public class UsuarioController {
 		if(ue == null) {
 			mv = new ModelAndView("login", "msgError", "Usuario y clave no existe. Vuelva a intentar!");
 		}else {
-			mv = new ModelAndView("saludo", "mensaje","Bienvenido"+  ue.getNombreCompleto());
+			mv = new ModelAndView("usuarioLista", "lista",usuarioServicio.getListaUsuarios());
 		}
 		return mv;
 	}
+	
+	@RequestMapping("usuarioCrear")
+	public ModelAndView crearUsuario() {
+		return new ModelAndView("usuarioDatos","usuarioBean", new UsuarioDTO());
+	}
+	
+	@RequestMapping("usuarioGrabar")
+	public ModelAndView grabarUsuario(@Valid @ModelAttribute("usuarioBean") UsuarioDTO usuario, 
+			BindingResult resulta){
+		ModelAndView mv= null;
+		if(resulta.hasErrors()) {
+			mv= new ModelAndView("usuarioDatos","usuarioBean",usuario);
+		}
+		else {
+			usuarioServicio.insertarUsuario(usuario);
+			mv = new ModelAndView("usuarioLista", "lista",usuarioServicio.getListaUsuarios());
+		}
+		
+		return mv;
+	}	
 	
 }

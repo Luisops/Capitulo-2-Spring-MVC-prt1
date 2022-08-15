@@ -1,11 +1,28 @@
 package com.luisops.capitulo2.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class UsuarioDTO {
 
+	@Size(min=3, max = 20)
 	String usuario;
+	
+	@NotNull
+	@NotBlank
 	String clave;
 	String nombreCompleto;
 	
+	public UsuarioDTO() {
+		// TODO Auto-generated constructor stub
+	}	
+	public UsuarioDTO(String usuario, String clave, String nombreCompleto) {
+		this.usuario = usuario;
+		this.clave = clave;
+		this.nombreCompleto = nombreCompleto;
+	}
 	public String getUsuario() {
 		return usuario;
 	}
